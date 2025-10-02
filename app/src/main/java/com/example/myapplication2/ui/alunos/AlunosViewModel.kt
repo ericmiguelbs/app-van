@@ -1,12 +1,12 @@
-package com.example.myapplication2.ui.slideshow
+package com.example.myapplication2.ui.alunos
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class AlunosViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
-        value = "Aqui é a tela Slideshow"
+        value = "Tela de Cadastro de Alunos"
     }
     val text: LiveData<String> = _text
 }

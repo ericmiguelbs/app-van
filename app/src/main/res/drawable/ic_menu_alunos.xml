@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Chapéu de formatura -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,2l8,3.5 -8,3.5 -8,-3.5z" />
+
+    <!-- Cordão do chapéu -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M20,5.5v3c0,0.6 -0.4,1 -1,1s-1,-0.4 -1,-1v-3h2zM19,9.8a1.2,1.2 0 1,0 0,2.4 1.2,1.2 0 0,0 0,-2.4z" />
+
+    <!-- Cabeça -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,6a3,3 0 1,1 0,6 3,3 0 1,1 0,-6z" />
+
+    <!-- Corpo / ombros -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M6,22v-3c0,-2.2 2.7,-4 6,-4s6,1.8 6,4v3H6z" />
+</vector>
+

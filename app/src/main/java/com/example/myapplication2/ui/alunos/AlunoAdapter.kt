@@ -4,7 +4,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication2.R
+import com.example.myapplication2.ui.alunos.Aluno // Classe Aluno importada corretamente
 
+// CORREÇÃO: A lista de alunos deve ser List<Aluno>, não List<T>
 class AlunosAdapter(private var listaAlunos: List<Aluno>) :
     RecyclerView.Adapter<AlunosAdapter.AlunoViewHolder>() {
 
@@ -29,6 +31,8 @@ class AlunosAdapter(private var listaAlunos: List<Aluno>) :
     }
 
     override fun getItemCount(): Int = listaAlunos.size
+
+    // O método setAlunos já estava correto!
     fun setAlunos(novaLista: List<Aluno>) {
         listaAlunos = novaLista
         notifyDataSetChanged()

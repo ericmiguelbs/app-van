@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.equipe.EquipeFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastro de Equipe"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/edit_nome_equipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome da Equipe"
+        android:inputType="textCapWords"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/edit_descricao_equipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descrição da Equipe"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btn_salvar_equipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SALVAR EQUIPE"
+        android:backgroundTint="#6200EE"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btn_mostrar_equipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mostrar Equipes"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_equipes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:visibility="gone"
+        android:paddingBottom="60dp"  android:clipToPadding="false" android:nestedScrollingEnabled="false"
+        tools:listitem="@layout/item_equipe" />
+
+</LinearLayout>

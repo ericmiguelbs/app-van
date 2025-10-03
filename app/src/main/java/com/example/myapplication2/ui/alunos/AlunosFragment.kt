@@ -32,7 +32,7 @@ class AlunosFragment : Fragment() {
 
         dbHelper = DBHelper(requireContext())
 
-        alunosAdapter = AlunosAdapter(emptyList())
+        alunosAdapter = AlunosAdapter(emptyList<Aluno>())
         binding.recyclerAlunos.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerAlunos.adapter = alunosAdapter
 

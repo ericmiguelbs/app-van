@@ -3,6 +3,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.content.ContentValues
 import android.database.Cursor
+import com.example.myapplication2.ui.alunos.Aluno
+
 class DBHelper(context: Context) :
     SQLiteOpenHelper(context, Companion.DATABASE_NAME, null, Companion.DATABASE_VERSION) {
 

@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".ui.alunos.AlunosFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Selecione a Escola:"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <Spinner
-        android:id="@+id/spinner_escola_aluno"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecione a Escola:"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/input_nome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nome do aluno"
-        android:minHeight="48dp"/>
+        <Spinner
+            android:id="@+id/spinner_escola_aluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/input_idade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Idade"
-        android:inputType="number"
-        android:minHeight="48dp"/>
+        <EditText
+            android:id="@+id/input_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome do aluno"
+            android:minHeight="48dp"/>
 
-    <Button
-        android:id="@+id/btn_salvar_aluno"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cadastrar Aluno"
-        android:layout_marginTop="16dp"/>
+        <EditText
+            android:id="@+id/input_idade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Idade"
+            android:inputType="number"
+            android:minHeight="48dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_alunos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp"/>
+        <Button
+            android:id="@+id/btn_salvar_aluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar Aluno"
+            android:layout_marginTop="16dp"/>
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_alunos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:nestedScrollingEnabled="false" /> </LinearLayout>
+</androidx.core.widget.NestedScrollView>

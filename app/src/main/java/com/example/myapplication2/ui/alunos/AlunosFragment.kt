@@ -1,98 +1,129 @@
 package com.example.myapplication2.ui.alunos
 
-import DBHelper
-import AlunosAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication2.databinding.FragmentAlunosBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication2.R
+import com.example.myapplication2.data.DBHelper
+import com.example.myapplication2.ui.escola.Escola
 
 class AlunosFragment : Fragment() {
 
-    private var _binding: FragmentAlunosBinding? = null
-    private val binding get() = _binding!!
-
-    private val alunosViewModel: AlunosViewModel by viewModels()
-
     private lateinit var dbHelper: DBHelper
-    private lateinit var alunosAdapter: AlunosAdapter
+
+    private lateinit var inputNome: EditText
+    private lateinit var inputIdade: EditText
+    private lateinit var btnSalvarAluno: Button
+
+    private lateinit var spinnerEscola: Spinner
+    private var listaEscolas: List<Escola> = emptyList()
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var alunoAdapter: AlunoAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAlunosBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
+    ): View? {
+        val root = inflater.inflate(R.layout.fragment_alunos, container, false)
         dbHelper = DBHelper(requireContext())
 
-        alunosAdapter = AlunosAdapter(emptyList<Aluno>())
-        binding.recyclerAlunos.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerAlunos.adapter = alunosAdapter
+        // Mapeamento das views
+        inputNome = root.findViewById(R.id.input_nome)
+        inputIdade = root.findViewById(R.id.input_idade)
+        btnSalvarAluno = root.findViewById(R.id.btn_salvar_aluno)
+        spinnerEscola = root.findViewById(R.id.spinner_escola_aluno) // NOVO
 
-        binding.btnSalvar.setOnClickListener {
-            val nome = binding.inputNome.text.toString().trim()
-            val idadeStr = binding.inputIdade.text.toString().trim()
+        recyclerView = root.findViewById(R.id.recycler_alunos)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        alunoAdapter = AlunoAdapter(emptyList())
+        recyclerView.adapter = alunoAdapter
 
-            if (nome.isNotEmpty() && idadeStr.isNotEmpty()) {
-                try {
-                    val idadeInt = idadeStr.toInt()
+        carregarEscolasParaSpinner()
 
-                    dbHelper.adicionarAluno(nome, idadeInt)
-
-                    Toast.makeText(requireContext(), "Aluno $nome cadastrado! ✅", Toast.LENGTH_SHORT).show()
-
-                    binding.inputNome.setText("")
-                    binding.inputIdade.setText("")
-
-                    if (binding.recyclerAlunos.visibility == View.VISIBLE) {
-                        carregarAlunos()
-                    }
-
-                } catch (e: NumberFormatException) {
-                    Toast.makeText(requireContext(), "Erro: idade inválida.", Toast.LENGTH_SHORT).show()
-                }
-
-            } else {
-                Toast.makeText(requireContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
-            }
+        btnSalvarAluno.setOnClickListener {
+            adicionarAluno()
         }
 
-        binding.btnMostrarAlunos.setOnClickListener {
-            alternarVisualizacaoAlunos()
-        }
-
+        carregarListaAlunos()
         return root
     }
 
-    private fun alternarVisualizacaoAlunos() {
-        if (binding.recyclerAlunos.visibility == View.GONE) {
-            carregarAlunos()
-            binding.recyclerAlunos.visibility = View.VISIBLE
-            binding.btnMostrarAlunos.text = "Ocultar Alunos"
-            Toast.makeText(requireContext(), "Lista de alunos exibida.", Toast.LENGTH_SHORT).show()
+    private fun carregarEscolasParaSpinner() {
+        listaEscolas = dbHelper.getEscolas()
+
+        val nomesEscolas = listaEscolas.map { it.nome }
+
+        val displayList = if (nomesEscolas.isEmpty())
+            listOf("Nenhuma escola cadastrada")
+        else
+            nomesEscolas
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            displayList
+        )
+        spinnerEscola.adapter = adapter
+    }
+
+    // Função de cadastro de aluno (MODIFICADA)
+    private fun adicionarAluno() {
+        val nome = inputNome.text.toString().trim()
+        val idadeStr = inputIdade.text.toString().trim()
+
+        if (nome.isEmpty() || idadeStr.isEmpty()) {
+            Toast.makeText(context, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val idadeInt = idadeStr.toIntOrNull()
+        if (idadeInt == null || idadeInt <= 0) {
+            Toast.makeText(context, "Idade inválida!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val pos = spinnerEscola.selectedItemPosition
+
+        val isPlaceholderSelected = spinnerEscola.selectedItem.toString() == "Nenhuma escola cadastrada"
+
+        if (listaEscolas.isEmpty() || isPlaceholderSelected) {
+            Toast.makeText(context, "É obrigatório selecionar uma Escola para cadastrar o aluno!", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val escolaIdSelecionada: Int = listaEscolas[pos].id
+
+        val novoAluno = Aluno(
+            nome = nome,
+            idade = idadeInt,
+            escolaId = escolaIdSelecionada
+        )
+
+        val id = dbHelper.adicionarAluno(novoAluno)
+
+        if (id > 0) {
+            Toast.makeText(context, "Aluno '$nome' cadastrado! ✅", Toast.LENGTH_SHORT).show()
+            inputNome.text.clear()
+            inputIdade.text.clear()
+            carregarListaAlunos()
         } else {
-            binding.recyclerAlunos.visibility = View.GONE
-            binding.btnMostrarAlunos.text = "Mostrar Alunos"
-        }
-    }
-    private fun carregarAlunos() {
-        val listaAlunos = dbHelper.listarAlunos()
-        alunosAdapter.setAlunos(listaAlunos)
-
-        if (listaAlunos.isEmpty()) {
-            Toast.makeText(requireContext(), "Nenhum aluno cadastrado.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Erro ao cadastrar aluno.", Toast.LENGTH_SHORT).show()
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun carregarListaAlunos() {
+        val lista = dbHelper.listarAlunos()
+        alunoAdapter.updateAlunos(lista)
     }
+
 }

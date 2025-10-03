@@ -1,19 +1,19 @@
+package com.example.myapplication2.ui.alunos
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication2.R
-import com.example.myapplication2.ui.alunos.Aluno // Classe Aluno importada corretamente
 
-// CORREÇÃO: A lista de alunos deve ser List<Aluno>, não List<T>
-class AlunosAdapter(private var listaAlunos: List<Aluno>) :
-    RecyclerView.Adapter<AlunosAdapter.AlunoViewHolder>() {
+class AlunoAdapter(private var alunos: List<Aluno>) :
+    RecyclerView.Adapter<AlunoAdapter.AlunoViewHolder>() {
 
-    class AlunoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textId: TextView = view.findViewById(R.id.text_id)
-        val textNome: TextView = view.findViewById(R.id.text_nome)
-        val textIdade: TextView = view.findViewById(R.id.text_idade)
+    class AlunoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val numero: TextView = itemView.findViewById(R.id.text_id)
+        val nome: TextView = itemView.findViewById(R.id.text_nome)
+        val idade: TextView = itemView.findViewById(R.id.text_idade)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlunoViewHolder {
@@ -23,18 +23,18 @@ class AlunosAdapter(private var listaAlunos: List<Aluno>) :
     }
 
     override fun onBindViewHolder(holder: AlunoViewHolder, position: Int) {
-        val aluno = listaAlunos[position]
+        val aluno = alunos[position]
 
-        holder.textId.text = "${position + 1}."
-        holder.textNome.text = aluno.nome
-        holder.textIdade.text = "Idade: ${aluno.idade} anos"
+        holder.numero.text = "${position + 1}."
+
+        holder.nome.text = aluno.nome
+        holder.idade.text = "Idade: ${aluno.idade} anos"
     }
 
-    override fun getItemCount(): Int = listaAlunos.size
+    override fun getItemCount(): Int = alunos.size
 
-    // O método setAlunos já estava correto!
-    fun setAlunos(novaLista: List<Aluno>) {
-        listaAlunos = novaLista
+    fun updateAlunos(novosAlunos: List<Aluno>) {
+        this.alunos = novosAlunos
         notifyDataSetChanged()
     }
 }

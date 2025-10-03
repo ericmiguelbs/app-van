@@ -1,39 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".ui.alunos.AlunosFragment">
 
-    <EditText
-        android:id="@+id/inputNome"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome do aluno"/>
+        android:text="Selecione a Escola:"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_escola_aluno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/inputIdade"
+        android:id="@+id/input_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome do aluno"
+        android:minHeight="48dp"/>
+
+    <EditText
+        android:id="@+id/input_idade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Idade"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:minHeight="48dp"/>
 
     <Button
-        android:id="@+id/btnSalvar"
+        android:id="@+id/btn_salvar_aluno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar"/>
-
-    <Button
-        android:id="@+id/btnMostrarAlunos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Mostrar Alunos"/>
+        android:text="Cadastrar Aluno"
+        android:layout_marginTop="16dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_alunos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"/> </LinearLayout>
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>

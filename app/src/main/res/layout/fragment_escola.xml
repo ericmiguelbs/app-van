@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.escola.EscolaFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastro de Escola"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/edit_nome_escola"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome da Escola"
+        android:inputType="textCapWords"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/edit_endereco_escola"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Endereço (Opcional)"
+        android:inputType="textPostalAddress"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btn_salvar_escola"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SALVAR ESCOLA"
+        android:backgroundTint="#008000"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btn_mostrar_escolas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mostrar Escolas"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_lista_escolas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="visible"
+        tools:listitem="@layout/item_escola" />
+
+    <TextView
+        android:id="@+id/text_titulo_alunos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alunos da Escola Selecionada"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_alunos_por_escola"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/text_titulo_equipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Equipes da Escola Selecionada"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_equipes_por_escola"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_marginBottom="24dp"/>
+
+</LinearLayout>

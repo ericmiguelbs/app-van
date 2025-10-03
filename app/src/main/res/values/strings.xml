@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application2</string>
+    <string name="app_name">MyApplication2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -10,5 +10,14 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="equipes_de_nome_da_escola">Equipes de Nome da Escola</string>
+
+    <string name="app_description_long">
+        Este é um sistema de gestão educacional robusto e intuitivo,
+        projetado para simplificar a administração de escolas, alunos e equipes.
+        Com ele, você pode:
+        \n\n\u2022 Cadastrar e organizar múltiplas escolas, com seus respectivos endereços.
+        \n\u2022 Gerenciar alunos, vinculando-os a escolas específicas e acompanhando suas informações.
+        \n\u2022 Criar e administrar equipes para projetos, competições ou atividades especiais, associando-as a escolas.
+        \n\nExplore as funcionalidades através do menu lateral e mantenha sua instituição de ensino sempre organizada!
+    </string>
 </resources>

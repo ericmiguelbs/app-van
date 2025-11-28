@@ -1,4 +1,4 @@
-# 🚐 App Van --- README Oficial (Atualizado)
+# 🚐 App Van 
 
 Este documento descreve toda a estrutura do projeto **App Van**,
 incluindo **código Kotlin**, **ViewModels**, **Fragments**, **DBHelper**
@@ -160,4 +160,7 @@ Permitindo controle simples e organizado dos dados.
 
 # 👨‍💻 Autor
 
-Desenvolvido em Kotlin utilizando MVVM e SQLite.
+- Henrique Santos
+- Eric Miguel
+- Nicolas Lopes
+- Yuri
